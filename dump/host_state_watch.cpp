@@ -38,7 +38,7 @@ void HostStateWatch::propertyChanged(sdbusplus::message::message& msg)
             auto progress = std::get_if<ProgressStages>(&prop.second);
             if (progress != nullptr)
             {
-                if (*progress == ProgressStages::OSRunning)
+                if (*progress == ProgressStages::OSRunning || *progress == ProgressStages::SystemInitComplete)
                 {
                     log<level::INFO>("Host state is ProgressStages::OSRunning");
                     _dumpQueue.hostStateChange(true);
